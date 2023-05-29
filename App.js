@@ -77,18 +77,20 @@ export default function App() {
       <StatusBar style="auto" />
       <Text style={styles.txt1}>TicTacToe</Text>
       <Text style={styles.txt2}>{notification}</Text>
-      <FlatList
-        style={styles.list}
-        data={board}
-        numColumns={3}
-        refreshing={true}
-        extraData={refresh}
-        renderItem={({item, index}) =>
-          <TouchableOpacity style={styles.square} onPress={() => pressField(index)}>
-            <Text>{item}</Text>
-          </TouchableOpacity>
-        }
-      />
+      <View style={styles.flatlistContainer}>
+        <FlatList
+          style={styles.list}
+          data={board}
+          numColumns={3}
+          refreshing={true}
+          extraData={refresh}
+          renderItem={({item, index}) =>
+            <TouchableOpacity style={styles.square} onPress={() => pressField(index)}>
+              <Text style={styles.txtXO}>{item}</Text>
+            </TouchableOpacity>
+          }
+        />
+      </View>
     </View>
   );
 }
@@ -100,20 +102,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  flatlistContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 370,
+    width: '100%'
+  },
   txt1: {
     fontSize: 50
   },
   txt2: {
     fontSize: 20
   },
+  txtXO: {
+    fontSize: 60
+  },
   list: {
     width: 300,
-    height: 400
+    height: 300
   },
   square: {
-    height: 60,
-    width: 30,
-    backgroundColor: 'red',
-    margin: 10
+    height: 100,
+    width: 100,
+    backgroundColor: 'gray',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
