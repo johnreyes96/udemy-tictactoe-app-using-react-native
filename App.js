@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import react from 'react';
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
@@ -78,6 +78,10 @@ export default function App() {
       <Text style={styles.txt1}>TicTacToe</Text>
       <Text style={styles.txt2}>{notification}</Text>
       <View style={styles.flatlistContainer}>
+        <Image
+          source={require('./assets/bg.png')}
+          style={styles.image}
+        />
         <FlatList
           style={styles.list}
           data={board}
@@ -105,7 +109,7 @@ const styles = StyleSheet.create({
   flatlistContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 370,
+    height: 300,
     width: '100%'
   },
   txt1: {
@@ -124,8 +128,12 @@ const styles = StyleSheet.create({
   square: {
     height: 100,
     width: 100,
-    backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  image: {
+    width: 300,
+    height: 300,
+    position: 'absolute'
   }
 });
