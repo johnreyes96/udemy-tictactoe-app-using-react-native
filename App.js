@@ -16,15 +16,19 @@ export default function App() {
 
   const pressField = (index) => {
     let newBoard = board
-    if (currentPlayer == "X") {
-      newBoard[index] = currentPlayer
-      setCurrentPlayer("O")
-    } else {
-      newBoard[index] = currentPlayer
-      setCurrentPlayer("X")
+    if (newBoard[index] === " ") {
+      if (currentPlayer == "X") {
+        newBoard[index] = currentPlayer
+        setCurrentPlayer("O")
+        setNotification("Player O to start!")
+      } else {
+        newBoard[index] = currentPlayer
+        setCurrentPlayer("X")
+        setNotification("Player X to start!")
+      }
+      setBoard(newBoard)
+      setRefresh(!refresh)
     }
-    setBoard(newBoard)
-    setRefresh(!refresh)
   }
 
   return (
