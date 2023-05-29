@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import react from 'react';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
 export default function App() {
   const [ notification, setNotification ] = react.useState("Player X to start!")
   const [ refresh, setRefresh ] = react.useState(false)
@@ -20,11 +22,11 @@ export default function App() {
       if (currentPlayer == "X") {
         newBoard[index] = currentPlayer
         setCurrentPlayer("O")
-        setNotification("Player O to start!")
+        setNotification("Player O to move!")
       } else {
         newBoard[index] = currentPlayer
         setCurrentPlayer("X")
-        setNotification("Player X to start!")
+        setNotification("Player X to move!")
       }
       setBoard(newBoard)
       setRefresh(!refresh)
@@ -52,8 +54,22 @@ export default function App() {
     }
   }
 
-  const playWon = () => {
+  const playWon = async(player) => {
+    setNotification("Player " + player + " won!")
+    await delay(2000)
+    setBoard(
+      [
+        " ", " ", " ",
+        " ", " ", " ",
+        " ", " ", " "
+      ]
+    )
 
+    if (player == "X") {
+      setNotification("Player O to move!")
+    } else {
+      setNotification("Player X to move!")
+    }
   }
 
   return (
