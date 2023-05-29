@@ -5,6 +5,7 @@ import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native
 export default function App() {
   const [ notification, setNotification ] = react.useState("Player X to start!")
   const [ refresh, setRefresh ] = react.useState(false)
+  const [ currentPlayer, setCurrentPlayer ] = react.useState("X")
   const [ board, setBoard ] = react.useState(
     [
       " ", " ", " ",
@@ -12,6 +13,19 @@ export default function App() {
       " ", " ", " "
     ]
   )
+
+  const pressField = (index) => {
+    let newBoard = board
+    if (currentPlayer == "X") {
+      newBoard[index] = currentPlayer
+      setCurrentPlayer("O")
+    } else {
+      newBoard[index] = currentPlayer
+      setCurrentPlayer("X")
+    }
+    setBoard(newBoard)
+    setRefresh(!refresh)
+  }
 
   return (
     <View style={styles.container}>
@@ -25,8 +39,8 @@ export default function App() {
         refreshing={true}
         extraData={refresh}
         renderItem={({item, index}) =>
-          <TouchableOpacity style={styles.square}>
-            <Text>{index}</Text>
+          <TouchableOpacity style={styles.square} onPress={() => pressField(index)}>
+            <Text>{item}</Text>
           </TouchableOpacity>
         }
       />
