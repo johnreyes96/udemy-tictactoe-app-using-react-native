@@ -1,4 +1,5 @@
 # Tic Tac Toe
-It's a video game for mobile devices made in react native.
+It's a mobile video game for 2 players made in react native.
 
-![alt text](https://raw.githubusercontent.com/johnreyes96/udemy-tictactoe-app-using-react-native/master/assets/home.png)
+# Home
+![alt text](https://raw.githubusercontent.com/johnreyes96/udemy-tictactoe-app-using-react-native/release/1.1.1/assets/home.jpeg)
