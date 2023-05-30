@@ -8,6 +8,7 @@ export default function App() {
   const [ notification, setNotification ] = react.useState("Player X to start!")
   const [ refresh, setRefresh ] = react.useState(false)
   const [ currentPlayer, setCurrentPlayer ] = react.useState("X")
+  const [ lock, setLock ] = react.useState(false)
   const [ board, setBoard ] = react.useState(
     [
       " ", " ", " ",
@@ -18,7 +19,7 @@ export default function App() {
 
   const pressField = (index) => {
     let newBoard = board
-    if (newBoard[index] === " ") {
+    if (newBoard[index] === " " && !lock) {
       if (currentPlayer == "X") {
         newBoard[index] = currentPlayer
         setCurrentPlayer("O")
@@ -57,6 +58,7 @@ export default function App() {
 
   const playWon = async(player) => {
     setNotification("Player " + player + " won!")
+    setLock(true)
     await delay(2000)
     resetGame(player)
   }
@@ -71,6 +73,7 @@ export default function App() {
 
   const gameOver = async(player) => {
     setNotification("Game over!")
+    setLock(true)
     await delay(2000)
 
     resetGame(player)
@@ -78,6 +81,7 @@ export default function App() {
 
   const resetGame = (player) => {
     clearBoard()
+    setLock(false)
 
     if (player == "X") {
       setNotification("Player O to move!")
