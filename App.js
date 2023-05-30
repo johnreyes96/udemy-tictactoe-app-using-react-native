@@ -31,6 +31,7 @@ export default function App() {
       setBoard(newBoard)
       setRefresh(!refresh)
       checkIfPlayerWon()
+      validClearBoard(board[index])
     }
   }
 
@@ -57,6 +58,35 @@ export default function App() {
   const playWon = async(player) => {
     setNotification("Player " + player + " won!")
     await delay(2000)
+    resetGame(player)
+  }
+
+  const validClearBoard = (player) => {
+    for (const cell of board) {
+      if (cell == " ") return
+    }
+
+    gameOver(player)
+  }
+
+  const gameOver = async(player) => {
+    setNotification("Game over!")
+    await delay(2000)
+
+    resetGame(player)
+  }
+
+  const resetGame = (player) => {
+    clearBoard()
+
+    if (player == "X") {
+      setNotification("Player O to move!")
+    } else {
+      setNotification("Player X to move!")
+    }
+  }
+
+  const clearBoard = () => {
     setBoard(
       [
         " ", " ", " ",
@@ -64,12 +94,6 @@ export default function App() {
         " ", " ", " "
       ]
     )
-
-    if (player == "X") {
-      setNotification("Player O to move!")
-    } else {
-      setNotification("Player X to move!")
-    }
   }
 
   return (
