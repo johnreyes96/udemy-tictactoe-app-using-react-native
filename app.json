@@ -2,7 +2,7 @@
   "expo": {
     "name": "TicTacToe",
     "slug": "TicTacToe",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -25,6 +25,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a34ec513-4729-491c-b473-3c845476ec7f"
+      }
     }
   }
 }
