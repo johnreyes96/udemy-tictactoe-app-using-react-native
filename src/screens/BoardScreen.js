@@ -3,8 +3,7 @@ import { FlatList, StyleSheet, TouchableOpacity, View, Text, Image  } from 'reac
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
-const BoardScreen = () => {
-    const [ notification, setNotification ] = useState("Player X to start!")
+const BoardScreen = ({ setNotification }) => {
     const [ refresh, setRefresh ] = useState(false)
     const [ currentPlayer, setCurrentPlayer ] = useState("X")
     const [ lock, setLock ] = useState(false)
@@ -109,10 +108,7 @@ const BoardScreen = () => {
     }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.txt1}>TicTacToe</Text>
-      <Text style={styles.txt2}>{notification}</Text>
-      <View style={styles.flatlistContainer}>
+    <View style={styles.flatlistContainer}>
         <Image
           source={require('../../assets/bg.png')}
           style={styles.image}
@@ -129,29 +125,11 @@ const BoardScreen = () => {
             </TouchableOpacity>
           }
         />
-      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    txt1: {
-        fontSize: 50,
-        position: 'absolute',
-        top: 60,
-        color: 'brown'
-    },
-    txt2: {
-        fontSize: 20,
-        position: 'absolute',
-        top: 130,
-        color: 'brown'
-    },
     flatlistContainer: {
         justifyContent: 'center',
         alignItems: 'center',
