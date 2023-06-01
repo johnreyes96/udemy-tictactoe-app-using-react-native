@@ -27,12 +27,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  flatlistContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 300,
-    width: '100%'
-  },
   txt1: {
     fontSize: 50,
     position: 'absolute',
@@ -44,25 +38,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 130,
     color: 'brown'
-  },
-  txtXO: {
-    fontSize: 60,
-    color: 'brown'
-  },
-  list: {
-    width: 300,
-    height: 300
-  },
-  square: {
-    height: 100,
-    width: 100,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  image: {
-    width: 300,
-    height: 300,
-    position: 'absolute'
   },
   backgroundImage: {
     position: 'absolute',
