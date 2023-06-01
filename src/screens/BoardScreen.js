@@ -3,7 +3,8 @@ import { FlatList, StyleSheet, TouchableOpacity, View, Text, Image  } from 'reac
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
-const BoardScreen = ({ setNotification }) => {
+const BoardScreen = () => {
+    const [ notification, setNotification ] = useState("Player X to start!")
     const [ refresh, setRefresh ] = useState(false)
     const [ currentPlayer, setCurrentPlayer ] = useState("X")
     const [ lock, setLock ] = useState(false)
@@ -108,7 +109,10 @@ const BoardScreen = ({ setNotification }) => {
     }
 
   return (
-    <View style={styles.flatlistContainer}>
+    <View style={styles.container}>
+      <Text style={styles.txt1}>TicTacToe</Text>
+      <Text style={styles.txt2}>{notification}</Text>
+      <View style={styles.flatlistContainer}>
         <Image
           source={require('../../assets/bg.png')}
           style={styles.image}
@@ -126,35 +130,53 @@ const BoardScreen = ({ setNotification }) => {
           }
         />
       </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  flatlistContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 300,
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    txt1: {
+        fontSize: 50,
+        position: 'absolute',
+        top: 60,
+        color: 'brown'
+    },
+    txt2: {
+        fontSize: 20,
+        position: 'absolute',
+        top: 130,
+        color: 'brown'
+    },
+    flatlistContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 300,
     width: '100%'
-  },
-  txtXO: {
-    fontSize: 60,
-    color: 'brown'
-  },
-  list: {
-    width: 300,
-    height: 300
-  },
-  square: {
-    height: 100,
-    width: 100,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  image: {
-    width: 300,
-    height: 300,
-    position: 'absolute'
-  }
+    },
+    txtXO: {
+        fontSize: 60,
+        color: 'brown'
+    },
+    list: {
+        width: 300,
+        height: 300
+    },
+    square: {
+        height: 100,
+        width: 100,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    image: {
+        width: 300,
+        height: 300,
+        position: 'absolute'
+    }
 });
 
 export default BoardScreen;
