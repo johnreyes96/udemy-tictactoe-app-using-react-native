@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FlatList, StyleSheet, TouchableOpacity, View, Text, Image  } from 'react-native';
+import BoardComponent from '../components/Board';
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
@@ -109,10 +110,7 @@ const BoardScreen = ({ setNotification }) => {
 
   return (
     <View style={styles.flatlistContainer}>
-        <Image
-          source={require('../../assets/bg.png')}
-          style={styles.image}
-        />
+        <BoardComponent />
         <FlatList
           style={styles.list}
           data={board}
@@ -149,11 +147,6 @@ const styles = StyleSheet.create({
         width: 100,
         justifyContent: 'center',
         alignItems: 'center'
-    },
-    image: {
-        width: 300,
-        height: 300,
-        position: 'absolute'
     }
 });
 
