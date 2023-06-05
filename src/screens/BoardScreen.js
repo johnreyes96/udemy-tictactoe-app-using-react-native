@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { FlatList, StyleSheet, TouchableOpacity, View, Text, Image  } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
+
 import BoardComponent from '../components/Board';
+import CellComponent from '../components/Cell';
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
@@ -8,6 +10,7 @@ const BoardScreen = ({ setNotification }) => {
     const [ refresh, setRefresh ] = useState(false)
     const [ currentPlayer, setCurrentPlayer ] = useState("X")
     const [ lock, setLock ] = useState(false)
+    const [ moves, setMoves ] = useState(0)
     const [ board, setBoard ] = useState(
       [
         " ", " ", " ",
@@ -16,7 +19,7 @@ const BoardScreen = ({ setNotification }) => {
       ]
     )
 
-    const pressField = (index) => {
+    const pressCell = (index) => {
       let newBoard = board
       if (newBoard[index] === " " && !lock) {
         if (currentPlayer == "X") {
@@ -31,8 +34,9 @@ const BoardScreen = ({ setNotification }) => {
         setBoard(newBoard)
         setRefresh(!refresh)
   
-        if (checkIfPlayerWon()) return
+        if (moves > 3 && checkIfPlayerWon()) return
   
+        setMoves(moves + 1)
         validClearBoard(board[index])
       }
     }
@@ -93,6 +97,7 @@ const BoardScreen = ({ setNotification }) => {
     const resetGame = (player) => {
       clearBoard()
       setLock(false)
+      setMoves(0)
   
       if (player == "X") setNotification("Player O to move!")
       else setNotification("Player X to move!")
@@ -118,9 +123,7 @@ const BoardScreen = ({ setNotification }) => {
           refreshing={true}
           extraData={refresh}
           renderItem={({item, index}) =>
-            <TouchableOpacity style={styles.square} onPress={() => pressField(index)}>
-              <Text style={styles.txtXO}>{item}</Text>
-            </TouchableOpacity>
+            <CellComponent pressCell={pressCell} move={item} index={index} />
           }
         />
     </View>
@@ -134,19 +137,9 @@ const styles = StyleSheet.create({
         height: 300,
     width: '100%'
     },
-    txtXO: {
-        fontSize: 60,
-        color: 'brown'
-    },
     list: {
         width: 300,
         height: 300
-    },
-    square: {
-        height: 100,
-        width: 100,
-        justifyContent: 'center',
-        alignItems: 'center'
     }
 });
 
