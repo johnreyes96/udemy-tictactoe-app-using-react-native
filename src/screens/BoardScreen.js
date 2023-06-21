@@ -117,7 +117,7 @@ const BoardScreen = ({ setNotification }) => {
     <View style={styles.flatlistContainer}>
         <BoardComponent />
         <FlatList
-          style={styles.list}
+          style={styles.flatList}
           data={board}
           numColumns={3}
           refreshing={true}
@@ -132,14 +132,15 @@ const BoardScreen = ({ setNotification }) => {
 
 const styles = StyleSheet.create({
     flatlistContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 300,
-    width: '100%'
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: -50,
+      height: 300,
+      width: '100%'
     },
-    list: {
-        width: 300,
-        height: 300
+    flatList: {
+      width: 300,
+      height: 300
     }
 });
 
