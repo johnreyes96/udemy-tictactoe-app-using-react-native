@@ -6,7 +6,7 @@ import CellComponent from '../components/Cell';
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
-const BoardScreen = ({ setNotification }) => {
+const BoardScreen = ({ setNotification, setPlayerScore }) => {
     const [ refresh, setRefresh ] = useState(false)
     const [ currentPlayer, setCurrentPlayer ] = useState("X")
     const [ lock, setLock ] = useState(false)
@@ -73,6 +73,7 @@ const BoardScreen = ({ setNotification }) => {
   
     const playWon = async(player) => {
       setNotification("Player " + player + " won!")
+      setPlayerScore(player)
       setLock(true)
       await delay(2000)
       resetGame(player)

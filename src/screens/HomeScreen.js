@@ -6,18 +6,35 @@ import PlayerScoreComponent from '../components/PlayerScore';
 
 const HomeScreen = () => {
   const [ notification, setNotification ] = useState("Player X to start!")
+  const [ playerXScore, setPlayerXScore ] = useState(0)
+  const [ playerYScore, setPlayerYScore ] = useState(0)
+
+  const setPlayerScore = (player) => {
+    if (player == "X") {
+      setPlayerXScore(playerXScore + 1)
+    } else {
+      setPlayerYScore(playerYScore + 1)
+    }
+  }
+
+  const resetScore = () => {
+    if (playerXScore != 0 || playerYScore != 0) {
+      setPlayerXScore(0)
+      setPlayerYScore(0)
+    }
+  }
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tic-Tac-Toe</Text>
       <Text style={styles.move}>{notification}</Text>
-      <BoardScreen setNotification={setNotification} />
+      <BoardScreen setNotification={setNotification} setPlayerScore={setPlayerScore} />
       <View style={styles.containerScore}>
-        <PlayerScoreComponent player={'X'} score={0} />
-        <PlayerScoreComponent player={'Y'} score={1} />
+        <PlayerScoreComponent player={'X'} score={playerXScore} />
+        <PlayerScoreComponent player={'O'} score={playerYScore} />
       </View>
       <TouchableOpacity
-        onPress={() => console.log('Button pressed')}
+        onPress={() => resetScore()}
         style={styles.button}
       >
         <Text style={styles.buttonText}>Reset score</Text>
